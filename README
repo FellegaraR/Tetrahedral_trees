@@ -1,0 +1,88 @@
+  NAME:
+
+	Tetrahedral Trees library
+
+  USAGE: 
+
+    ./tetrahedraltrees {<-v [kv] -t [kt] -c [crit] -d [div] | -f [tree_file]>
+                       -q [op-file] -s -r} | {-g [query-ratio-quantity-type]}
+                       -i [mesh_file]
+    -v [kv]
+          kv is the vertices threshold per leaf. This parameter is needed by P-Ttrees and PT-Ttrees.
+
+    -t [kt]
+          kt is the tetrahedra threshold per leaf. This parameter is needed 
+          by RT-Ttrees, PT-Ttrees and T-Ttrees.
+
+    -c [crit]
+          crit is the criterion type of the index. This can be P-Ttree (pr), 
+          RT-Ttree (pmr),  PT-Ttree (pm) or  T-Ttree (pm2).
+
+    -d [div]
+          div is the division type of the index. This can be octree (ok) or kD-tree (kd).
+
+          NOTA: these arguments must be used in conjunction to create an index. 
+          This operation generate as output a file containing the tetrahedral index.
+
+    -f [tree_file]
+          reads an spatial index from an input file
+
+          tree_file contains a Tetrahedral Tree index. This file has a fixed syntax of the name 
+          that allows to recover the informations needed to get the 
+          tetrahedraltree index (i.e., kv, kt, division and critirion types)
+
+          NOTA: you can use -f argument [OR] {-v / -t / -c / -d} arguments.
+
+    -q [op-file]
+          executes a query op, picking the inputs from file
+
+          'op' can be: point - box - line - wvt - wdist - wtt - ltt 
+          'point' stands for point location, 'box' for box query, 
+          'line' for line query, 'wvt' for windowed VT query, 'wdist' windowed Distortion 
+          computation, 'wtt' for windowed TT query and 'ltt' for linearized TT query.
+          'file' represent the path of the file that contains the inputs for the queries.
+
+    -g [query-ratio-quantity-type]
+          generates a given number of input data for a specific query
+
+          query can be: point - box - line. 'ratio' is a number between 0 and 1, and and represents the per-
+          centage of the maximum side of the domain to pick. 'quantity' is a positive number that indicate 
+          the number of inputs to generate. type can be: near - rand. 'near' stands for a point (picked ran-
+          domly) that is near to the mesh, while 'rand' stands for a point (picked randomly) that is inside
+          the domain.
+
+          If 'query' is equal to point 'ratio' must be equal to 0, 
+          otherwise 'ratio' must be greater than 0.
+
+    -s
+          computes the tetrahedral tree statistics.
+
+    -r
+          activate the procedures to exploit the spatial coherence of the index and the mesh.
+
+    - i [mesh_file]
+          reads the mesh_file containing the tetrahedral mesh.
+
+  EXAMPLE[1]: 
+          ./tetrahedraltrees -v 20 -c pr -d ok -s -i mesh.ts
+          reads the mesh [mesh.ts]. Then, builds a P-Ttree index with kv=20 and with subdivision octree.
+          Finally, it computes the index statistics (-s).
+
+  EXAMPLE[2]: 
+          ./tetrahedraltrees -f tree_file -q wvt-boxfile -r -i mesh.ts
+          reads the mesh [mesh.ts]. Then, reads the index from tree_file (obtaining the tree 
+          parameters direcly from the file name) and spatially reordering it (-r).
+          Finally, it executes the windowed VT querys, using as query boxes those into 'boxfile'.
+
+  IMPLEMENTATION:
+          Author: Riccardo Fellegara
+          Group: G3 Geometry and Graphics Group
+          Man-page Last Update: May 2016
+
+  DESCRIPTION: 
+          We address the problem of performing spatial queries on tetrahedral meshes. These latter arise in
+          several application domains including 3D GIS, scientific visualization, finite element analysis.
+          We have defined and implemented a family of spatial indexes, that we call tetrahedral trees. Tet
+          rahedral trees are based on a subdivision of a cubic domain containing the mesh defined either by
+          an octree or a 3D kD-tree. For each of them, we have four variants of the spatial index, dependi
+          ng on four different subdivision criteria.

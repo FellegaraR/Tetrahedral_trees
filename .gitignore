@@ -1,0 +1,9 @@
+*.directory
+/doc/
+.qmake.stash
+dist/tetrahedral_trees
+*.sh
+/Doxyfile
+/TetrahedralTrees.pro.user
+/TetrahedralTrees.pro.user.*
+Makefile

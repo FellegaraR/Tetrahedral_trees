@@ -40,13 +40,13 @@ R. Fellegara, K. Weiss, and L. De Floriani
 
 ### How to compile ###
 
-The library requires the [boost library](http://www.boost.org/) (for dynamic_bitset class), and [qmake](https://doc.qt.io/archives/qt-4.8/qmake-manual.html) installed in your system.
+The library requires the [boost library](http://www.boost.org/) (for dynamic_bitset class), [qmake](https://doc.qt.io/archives/qt-4.8/qmake-manual.html), and [BitMagic library](http://bitmagic.io/) installed in your system.
 
 In Debian-based OSes (including Ubuntu and Linux Mint) these requirements can be satisfied by running the following command in the terminal:
 ```
 #!
 
-sudo apt install libboost-all-dev qt5-qmake
+sudo apt install libboost-all-dev qt5-qmake bmagic
 ```
 
 Once installed, execute from the command line in the root folder of the project the following command:

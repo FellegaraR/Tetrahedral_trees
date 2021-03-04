@@ -64,3 +64,28 @@ make
 This latter command generates an executable in `dist` folder.
 
 The compilation has been test on linux systems.
+
+### Use the main library ###
+
+In the bin folder there is the main executable file named `tetrahedral_trees` that contains the whole library. 
+For a complete list of the command line options just type in the command line the following command:
+```
+./tetrahedral_trees
+```
+
+### Supported File Formats ###
+
+The library supports files in `.ts` format, that are simple ASCII files containing the explicit representation of vertices and tetrahedral
+```
+nV mT              -  number of vertices (nV) and tetrahedra (mT)
+x1 y1 z1 f1        -  x y z coordinates for each vertex and field value
+x2 y2 z2 f2
+.  .  .  .
+xn yn zn fn
+
+v11 v21 v31 v41    -  vertices (v1 v2 v3 v4) of the first tetrahedron
+v12 v22 v32 v42
+.   .   .   .
+v1m v2m v3m v4m
+
+```
